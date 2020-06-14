@@ -1,0 +1,28 @@
+package com.sxt;
+
+public class Hello {
+	
+		int A = 1;
+		static int B = 2;
+		static int C = 3;
+		static int D = 4;
+		int E = 5;
+		int F = 6;
+		static int G = 7;
+		
+		
+	public static void main(String[] args) {
+		System.out.println("你好");
+		System.out.println("你在搞么事");
+		System.out.println(add(11));
+		
+	}
+	
+	public static int  add(int c) {
+		int a = B + C;
+		int b = G + D;
+		c = a + b;
+		return c;
+		
+	}
+}

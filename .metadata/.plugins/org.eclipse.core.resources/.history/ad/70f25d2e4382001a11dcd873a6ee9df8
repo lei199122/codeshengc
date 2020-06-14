@@ -1,0 +1,54 @@
+package com.sxt.business.service.impl;
+
+import com.sxt.business.domain.Sales;
+import com.sxt.business.domain.Salesback;
+import com.sxt.business.mapper.GoodsMapper;
+import com.sxt.business.mapper.SalesMapper;
+import com.sxt.business.mapper.SalesbackMapper;
+import com.sxt.business.service.ISalesbackService;
+import com.sxt.business.vo.SalesbackVo;
+import com.sxt.system.utils.DataGridView;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author LeiWei
+ * @since 2020-04-19
+ */
+@Service
+public class SalesbackServiceImpl extends ServiceImpl<SalesbackMapper, Salesback> implements ISalesbackService {
+	
+	@Autowired
+	private SalesMapper salesMapper;
+	@Autowired
+	private GoodsMapper goodsMapper;
+	
+	@Override
+	public Integer queryOutportCountBySalesId(Integer salesId) {
+		return this.getBaseMapper().queryOutportCountByIsalesId(salesId);
+	}
+
+	@Override
+	public void addSales(Salesback salesback) {
+		Integer salesid = salesback.getSalesid();
+		//根据进货单ID查询进货信息
+		Sales sales = salesMapper.selectById(salesid);
+		//向outport里面封装数据
+		salesback.setGoodsid(sales.getGoodsid());
+		salesback.setSalebackprice(sales.getSaleprice());
+		
+	}
+
+	@Override
+	public DataGridView queryAllSalesback(SalesbackVo salesbackVo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

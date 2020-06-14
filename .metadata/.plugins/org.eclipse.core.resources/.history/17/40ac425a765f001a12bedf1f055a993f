@@ -1,0 +1,32 @@
+package com.sxt;
+
+
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sxt.mapper.UserMapper;
+
+
+
+
+@SpringBootTest
+class ApplicationTests {
+	
+	@Autowired
+	public UserMapper userMapper;
+	
+	@Test
+	void contextLoads() {
+		System.out.println(userMapper.getClass());
+	}
+	
+	/**
+	 * 分页
+	 */
+	public void query3() {
+		Page<User> page = new Page<>(1, 3);
+	}
+}

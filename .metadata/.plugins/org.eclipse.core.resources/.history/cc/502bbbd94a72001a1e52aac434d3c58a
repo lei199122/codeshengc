@@ -1,0 +1,48 @@
+package com.sxt.system.service.impl;
+
+import com.sxt.system.domain.Permission;
+import com.sxt.system.mapper.PermissionMapper;
+import com.sxt.system.service.IPermissionService;
+import com.sxt.system.vo.PermissionVo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author LeiWei
+ * @since 2020-03-27
+ */
+@Service
+@Transactional
+public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
+	
+	private Log log = LogFactory.getLog(PermissionServiceImpl.class);
+	
+	@Override
+	public List<Permission> queryAllPermission(PermissionVo permissionVo) {
+		PermissionMapper permissionMapper = this.getBaseMapper();
+		QueryWrapper<Permission> qw = new QueryWrapper<>();
+		if(null != permissionVo) {
+			qw.eq(StringUtils.isNotBlank(permissionVo.getType()), "type", permissionVo.getType());
+			qw.eq(permissionVo.getAvailable() != null, "available", permissionVo.getAvailable());
+			qw.like(StringUtils.isNotBlank(permissionVo.getTitle()), "title", permissionVo.getTitle());
+		}else {
+			log.info("permissionVo的参数为空");
+		}
+		qw.orderByAsc("ordernum");
+		List<Permission> list = permissionMapper.selectList(qw);
+		return list;
+	}
+
+}

@@ -1,0 +1,20 @@
+package com.sxt.sys_user.service.impl;
+
+import com.sxt.sys_user.domain.BusSalesback;
+import com.sxt.sys_user.mapper.BusSalesbackMapper;
+import com.sxt.sys_user.service.IBusSalesbackService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+@Service
+public class BusSalesbackServiceImpl extends ServiceImpl<BusSalesbackMapper, BusSalesback> implements IBusSalesbackService {
+
+}

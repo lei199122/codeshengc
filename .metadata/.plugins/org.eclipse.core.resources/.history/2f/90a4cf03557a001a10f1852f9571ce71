@@ -1,0 +1,5 @@
+package com.sxt.business.cache;
+
+public class ProviderCacheAspect {
+
+}

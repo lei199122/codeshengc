@@ -1,0 +1,16 @@
+package com.sxt.sys.mapper;
+
+import com.sxt.sys.domain.BusGoods;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-04-07
+ */
+public interface BusGoodsMapper extends BaseMapper<BusGoods> {
+
+}

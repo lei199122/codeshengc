@@ -1,0 +1,34 @@
+package com.sxt.sys.service.impl;
+
+import com.sxt.sys.domain.User;
+import com.sxt.sys.mapper.UserMapper;
+import com.sxt.sys.service.IUserService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+	
+	/**
+	 * 声明日志输入对象
+	 */
+	
+	private Log  log = LogFactory.getLog(UserServiceImpl.class);
+	@Override
+	public User queryByUserName(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

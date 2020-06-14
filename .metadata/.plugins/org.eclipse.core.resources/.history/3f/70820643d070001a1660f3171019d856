@@ -1,0 +1,77 @@
+package com.sxt.system.controller;
+
+
+import java.util.Date;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sxt.system.domain.Notice;
+import com.sxt.system.domain.User;
+import com.sxt.system.service.INoticeService;
+import com.sxt.system.utils.DataGridView;
+import com.sxt.system.utils.ResultObj;
+import com.sxt.system.vo.NoticeVo;
+
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author LeiWei
+ * @since 2020-03-28
+ */
+@RestController
+@RequestMapping("notice")
+public class NoticeController {
+	
+	private Log log = LogFactory.getLog(NoticeController.class)
+	
+	@Autowired
+	private INoticeService noticeService;
+					 
+	@RequestMapping("loadAllNotice")
+	public DataGridView loadAllNotice(NoticeVo noticeVo) {
+		return this.noticeService.loadAllNotice(noticeVo);
+	}
+	
+	/**
+	 * 添加
+	 * @param notice
+	 * @return
+	 */
+	@RequestMapping("addNotice")
+	public ResultObj addNotice(Notice notice ,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		notice.setOpername(user.getName());//设置发布时间
+		notice.setCreatetime(new Date());//设置时间
+		try {
+			noticeService.addNotice(notice);
+			return ResultObj.ADD_SUCCESS;
+		} catch (Exception e) {
+			log.error("添加失败");
+			return ResultObj.ADD_ERROR;
+		}
+	}
+	
+	@RequestMapping("updateNotice")
+	public ResultObj updateNotice(Notice notice) {
+		
+		try {
+			noticeService.updateNotice(notice);
+			return ResultObj.UPDATE_SUCCESS;
+		} catch (Exception e) {
+			log.error("更新失败");
+			return ResultObj.UPDATE_ERROR;
+		}
+		
+	}
+}
+

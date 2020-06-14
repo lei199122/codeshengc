@@ -1,0 +1,5 @@
+package com.sxt.business.vo;
+
+public class SalesbackVo {
+
+}

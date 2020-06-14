@@ -1,0 +1,5 @@
+package com.sxt.sys.controller;
+
+public class LoginController {
+
+}

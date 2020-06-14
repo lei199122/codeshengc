@@ -1,0 +1,43 @@
+package com.sxt.system.controller;
+
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RestController;
+
+
+import com.sxt.system.service.IUserService;
+import com.sxt.system.utils.DataGridView;
+import com.sxt.system.vo.UserVo;
+
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+@RestController
+@RequestMapping("user")
+public class UserController {
+	
+	private Log log = LogFactory.getLog(UserController.class);
+	
+	@Autowired
+	private IUserService userService;
+	
+	/**
+	 * 全查询
+	 * @param user
+	 * @return
+	 */
+	public DataGridView loadAllUser(UserVo userVo) {
+		return this.userService.;
+		
+	}
+}
+

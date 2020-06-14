@@ -1,0 +1,10 @@
+package com.sxt.sys.utils;
+
+import lombok.Data;
+
+@Data
+public class ResultObj {
+	
+	private Integer code = 200;
+	private String msg = "";
+}

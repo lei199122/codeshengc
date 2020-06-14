@@ -1,0 +1,29 @@
+package com.sxt.business.vo;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.sxt.business.domain.Inport;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class InportVo extends Inport{
+	
+	/**
+	 * 分页参数
+	 */
+	private Integer page = 1;
+	private Integer limit = 10;
+	
+	/**
+	 * 查询条件
+	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date startTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date endTime;
+}

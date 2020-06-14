@@ -1,0 +1,19 @@
+package com.sxt.system.vo;
+
+import java.io.Serializable;
+
+import com.sxt.system.domain.Notice;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class NoticeVo extends Notice implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}

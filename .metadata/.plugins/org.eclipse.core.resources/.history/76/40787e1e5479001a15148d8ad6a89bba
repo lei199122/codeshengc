@@ -1,0 +1,7 @@
+package com.sxt.business.vo;
+
+import com.sxt.business.domain.Goods;
+
+public class GoodsVo extends Goods{
+
+}

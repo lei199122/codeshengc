@@ -1,0 +1,76 @@
+package com.sxt;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sxt.domain.User;
+import com.sxt.mapper.UserMapper;
+
+@SpringBootTest
+class ApplicationTests {
+	
+	@Autowired
+	public UserMapper userMapper;
+	
+	@Test
+	void contextLoads() {
+		System.out.println(userMapper.getClass());
+	}
+	
+	/**
+	 * 分页
+	 */
+	@Test
+	public void query3() {
+		IPage <User> page = new Page<>(1,3);
+		userMapper.selectPage(page, null);
+		long total = page.getTotal();
+		List<User> list = page.getRecords();
+		for (User user : list) {
+			System.out.println(user);
+		}
+		System.out.println("总条数：" + total);
+	}
+	/**
+	 * 查询返回集合
+	 * @param userMapper
+	 */
+	@Test
+	public void query2() {
+		//List <Integer> idList = Arrays.asList(15,16,17,18,19);
+		QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+		queryWrapper.gt("id", 1);
+		queryWrapper.like("name", "明");
+		List<Map<String,Object>> selectMap =userMapper.selectMaps(queryWrapper);
+		System.out.println(selectMap);
+		
+	}
+	/**
+	 * 查询一个
+	 * @param userMapper
+	 */
+	@Test
+	public void query() {
+		QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("id", 9);
+		User user = userMapper.selectOne(queryWrapper);
+		System.out.println(user);
+		}
+	
+	public void deleteUser() {
+		UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+		updateWrapper.between("id", 10, 13);
+		userMapper.delete(updateWrapper);
+	}
+	
+}

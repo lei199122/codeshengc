@@ -1,0 +1,16 @@
+package com.sxt.business.service;
+
+import com.sxt.business.domain.BusProvider;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * <p>
+ *  服务类
+ * </p>
+ *
+ * @author LeiWei
+ * @since 2020-04-07
+ */
+public interface IBusProviderService extends IService<BusProvider> {
+
+}

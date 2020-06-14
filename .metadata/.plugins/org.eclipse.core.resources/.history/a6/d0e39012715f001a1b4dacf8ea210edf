@@ -1,0 +1,10 @@
+package com.sxt;
+
+
+
+
+@SpringBootTest
+class ApplicationTests {
+	
+	
+}

@@ -1,0 +1,7 @@
+package com.sxt.sys.utils;
+
+import java.io.Serializable;
+
+public class ActiverUser implements Serializable {
+
+}

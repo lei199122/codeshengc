@@ -1,0 +1,20 @@
+package com.sxt.sys_user.service.impl;
+
+import com.sxt.sys_user.domain.BusOutport;
+import com.sxt.sys_user.mapper.BusOutportMapper;
+import com.sxt.sys_user.service.IBusOutportService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+@Service
+public class BusOutportServiceImpl extends ServiceImpl<BusOutportMapper, BusOutport> implements IBusOutportService {
+
+}

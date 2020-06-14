@@ -1,0 +1,44 @@
+package com.sxt;
+
+public class Hello {
+	
+		static int A = 1;
+		static int B = 2;
+		static int C = 3;
+		static int D = 4;
+		int E = 5;
+		static int F = 6;
+		static int G = 7;
+		
+		
+	public static void main(String[] args) {
+		System.out.println("你好");
+		System.out.println("你在搞么事");
+		System.out.println(add());
+		System.out.println(delete());
+	}
+	
+	public static int  add() {
+		int a = B + C;
+		int b = G + D;
+		int c = a + b;
+		return c;
+	}
+	
+	public static int delete() {
+		int d = G - A;
+		int f = F - C;
+		int g = d - f;
+		return g;
+		
+	}
+	
+	public static void off() {
+		int years = 2013;
+		if(years%4== 0 && years%100 != 0 ||years%400 == 0) {
+			System.out.println("是闰年");
+		}else {
+			System.out.println("不是闰年");
+		}
+	}
+}

@@ -1,0 +1,20 @@
+package com.sxt.business.service.impl;
+
+import com.sxt.business.domain.Customer;
+import com.sxt.business.mapper.CustomerMapper;
+import com.sxt.business.service.ICustomerService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author LeiWei
+ * @since 2020-04-08
+ */
+@Service
+public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements ICustomerService {
+
+}

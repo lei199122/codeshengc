@@ -1,0 +1,5 @@
+package com.sxt.system.vo;
+
+public class LoginfoVo {
+
+}

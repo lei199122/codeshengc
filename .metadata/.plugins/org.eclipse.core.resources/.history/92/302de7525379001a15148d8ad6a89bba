@@ -1,0 +1,20 @@
+package com.sxt.business.service.impl;
+
+import com.sxt.business.domain.BusProvider;
+import com.sxt.business.mapper.BusProviderMapper;
+import com.sxt.business.service.IBusProviderService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author LeiWei
+ * @since 2020-04-07
+ */
+@Service
+public class BusProviderServiceImpl extends ServiceImpl<BusProviderMapper, BusProvider> implements IBusProviderService {
+
+}

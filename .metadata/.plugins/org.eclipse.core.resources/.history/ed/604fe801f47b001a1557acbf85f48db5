@@ -1,0 +1,66 @@
+package com.sxt.business.service.impl;
+
+import com.sxt.business.domain.Inport;
+import com.sxt.business.mapper.InportMapper;
+import com.sxt.business.service.IGoodsService;
+import com.sxt.business.service.IInportService;
+import com.sxt.business.service.IProviderService;
+import com.sxt.business.vo.InportVo;
+import com.sxt.system.utils.DataGridView;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author LeiWei
+ * @since 2020-04-08
+ */
+@Service
+@Transactional
+public class InportServiceImpl extends ServiceImpl<InportMapper, Inport> implements IInportService {
+	
+	@Autowired
+	@Lazy
+	private IGoodsService goodsService;
+	
+	@Autowired
+	@Lazy
+	private IProviderService providerService;
+	
+	@Override
+	public DataGridView queryAllInport(InportVo inportVo) {
+		Page<Inport> page = new Page<>(inportVo.getPage(),inportVo.getLimit());
+		
+		QueryWrapper<Inport> qw = new QueryWrapper<>();
+		qw.eq(inportVo.getProviderid() != null , "providerid", inportVo.getProviderid());
+		qw.eq(inportVo.getGoodsid() != null, "goodsid", inportVo.getGoodsid());
+		qw.ge(null != inportVo.getStartTime(), "inporttime", inportVo.getStartTime());
+		qw.le(null != inportVo.getEndTime(), "inporttime", inportVo.getEndTime());
+		qw.orderByDesc("inporttime");
+		this.getBaseMapper().selectPage(page, qw);
+		List<Inport> list = page.getRecords();
+		for (Inport inport : list) {
+			Integer providerid = inport.getProviderid();
+			Integer goodsid = inport.getGoodsid();
+			if(null != providerid) {
+				inport.setProvidername(providerService.getById(providerid).getProvidername());	
+			}
+			if(null != goodsid) {
+				inport.setGoodsname(goodsService.getById(goodsid).getGoodsname());
+			}
+		}
+		return new DataGridView(page.getTotal(), list);
+	}
+
+}

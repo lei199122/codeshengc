@@ -1,0 +1,16 @@
+package com.sxt.sys_user.service;
+
+import com.sxt.sys_user.domain.SysNotice;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * <p>
+ *  服务类
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+public interface ISysNoticeService extends IService<SysNotice> {
+
+}

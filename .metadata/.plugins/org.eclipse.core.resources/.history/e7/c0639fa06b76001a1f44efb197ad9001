@@ -1,0 +1,101 @@
+package com.sxt.system.service.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sxt.system.constant.Constant;
+import com.sxt.system.domain.Dept;
+import com.sxt.system.domain.User;
+import com.sxt.system.mapper.UserMapper;
+import com.sxt.system.service.IDeptService;
+import com.sxt.system.service.IUserService;
+import com.sxt.system.utils.DataGridView;
+import com.sxt.system.vo.UserVo;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author 雷哥
+ * @since 2019-11-08
+ */
+@Service
+@Transactional
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService,ApplicationContextAware {
+	
+	@Autowired
+	@Lazy
+	private IDeptService deptService;
+	
+	/**
+	 * 声明日志输入对象
+	 */
+	private Log log=LogFactory.getLog(UserServiceImpl.class);
+	
+	@Override
+	public User queryByUserName(String username) {
+		
+		UserMapper userMapper = this.getBaseMapper();
+		QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+		if(null==username) {
+			log.error("用户登陆名不能为空");
+			throw new RuntimeException("用户登陆名不能为空");
+		}
+		queryWrapper.eq("loginname", username);
+		User user = userMapper.selectOne(queryWrapper);
+		return user;
+	}
+	
+	
+	@Override
+	public User getById(Serializable id) {
+		return super.getById(id);
+	}
+
+
+	@Override
+	public DataGridView loadAllUser(UserVo userVo) {
+		Page<User> page=new Page<>(userVo.getPage(), userVo.getLimit());
+		QueryWrapper<User> qw=new QueryWrapper<>();
+		qw.eq("type", Constant.USER_TYPE_NORMAL);
+		this.getBaseMapper().selectPage(page, qw);
+		List<User> list = page.getRecords();
+		for (User user : list) {
+			Integer deptid=user.getDeptid();
+			Integer mgr=user.getMgr();
+			//根据ID去查询部门
+			Dept dept = deptService.getById(deptid);
+			user.setDeptname(dept.getTitle());
+			
+			//根据领导ID去查询领导名称
+			if(null!=mgr) {//如果直接使用this那么缓存切面不生效
+				IUserService userService = content.getBean(IUserService.class);
+				User user2 =userService.getById(mgr);
+				user.setLeadername(user2.getName());
+			}
+		}
+		return new DataGridView(page.getTotal(), list);
+	}
+
+
+	private ApplicationContext content;
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.content=applicationContext;
+	}
+
+}

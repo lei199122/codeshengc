@@ -1,0 +1,20 @@
+package com.sxt.sys_user.service.impl;
+
+import com.sxt.sys_user.domain.SysPermission;
+import com.sxt.sys_user.mapper.SysPermissionMapper;
+import com.sxt.sys_user.service.ISysPermissionService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+@Service
+public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, SysPermission> implements ISysPermissionService {
+
+}

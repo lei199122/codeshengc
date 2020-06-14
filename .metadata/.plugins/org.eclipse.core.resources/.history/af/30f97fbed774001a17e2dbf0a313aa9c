@@ -1,0 +1,5 @@
+package com.sxt.system.cache.data;
+
+public class DataProvider {
+
+}

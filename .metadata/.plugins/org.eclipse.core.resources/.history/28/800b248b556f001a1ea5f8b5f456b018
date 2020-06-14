@@ -1,0 +1,16 @@
+package com.sxt.sys_user.mapper;
+
+import com.sxt.sys_user.domain.BusOutport;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+public interface BusOutportMapper extends BaseMapper<BusOutport> {
+
+}

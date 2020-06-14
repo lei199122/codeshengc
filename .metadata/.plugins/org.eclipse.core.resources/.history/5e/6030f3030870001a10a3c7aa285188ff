@@ -1,0 +1,22 @@
+package com.sxt.sys.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.sxt.system.domain.User;
+
+/**
+ * <p>
+ *  服务类
+ * </p>
+ *
+ * @author 雷卫
+ * @since 2020-03-26
+ */
+public interface IUserService extends IService<User> {
+	
+	/**
+	 * 根据登录名查询用户对象
+	 * @param username
+	 * @return
+	 */
+	public User queryByUserName(String username);
+}

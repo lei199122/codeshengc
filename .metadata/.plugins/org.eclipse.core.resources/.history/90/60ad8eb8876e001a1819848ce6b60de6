@@ -1,0 +1,77 @@
+package com.sxt.common;
+
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.DelegatingFilterProxy;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+
+import lombok.Data;
+
+@Data
+@Configuration
+@ConfigurationProperties(prefix = "shiro")
+public class ShiroAutoConfiguration {
+	
+	
+	private String  hashAlgorithmName = "md5";// 加密方式
+	private int  hashIterations = 2;// 散列次数
+	private String  targetBeanName = "shiroFilter";
+	private boolean  targetFilterLifecycle = true;
+	private String  loginUrl = "/index.html";// 未登陆跳转
+	private String  unauthorizedUrl = "/unauthorized.html";// 未授权跳转
+	private String[] anonUrls;
+	private String[] authcUrls;
+	
+	/**
+	 * 声明凭证匹配器
+	 */
+	@Bean
+	public HashedCredentialsMatcher hashedCredentialsMatcher() {
+		HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+		// 注入加密方式
+		credentialsMatcher.setHashAlgorithmName(hashAlgorithmName);
+		//注入散列次数
+		credentialsMatcher.setHashIterations(hashIterations);
+		
+		return credentialsMatcher;
+	}
+	
+	/**
+	 * 声明userRealm
+	 */
+	@Bean
+	public UserRealm userRealm(HashedCredentialsMatcher credentialsMatcher) {
+		
+		UserRealm userRealm = new UserRealm();
+		// 注入凭证匹配器
+		userRealm.setCredentialsMatcher(credentialsMatcher);
+		return userRealm;
+	}
+	
+	/**
+	 * 声明安全管理器
+	 */
+	@Bean
+	public SecurityManager securityManager(UserRealm userRealm) {
+		DefaultWebSecurityManager securityManager =new DefaultWebSecurityManager();
+		// 注入realm
+		securityManager.setRealm(userRealm);
+		
+		return securityManager;
+	}
+	
+	/**
+	 * 配置shiro的代理过滤器
+	 */
+	@Bean
+	public FilterRegistrationBean<DelegatingFilterProxy> filterRegistrationBeanDelegatingFilterProxy(){
+		
+		return null;
+		
+	}
+}

@@ -1,0 +1,5 @@
+package com.sxt.system.cache.aspect;
+
+public class UserCacheAspect {
+
+}

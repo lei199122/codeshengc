@@ -1,0 +1,24 @@
+package com.sxt.system.utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 树的构造器
+ * @author LW
+ *
+ */
+public class TreeNodeBuilder {
+	
+	public static List<TreeNode> build(List<TreeNode> treeNodes , int topId){
+		List<TreeNode> nodes = new ArrayList<TreeNode>();
+		for (TreeNode n1 : treeNodes) {
+			if(n1.getPid()<topId) {
+				continue
+			}
+		}
+		
+		return treeNodes;
+		
+	}
+}

@@ -1,0 +1,38 @@
+package com.sxt.demo;
+
+public class Text {
+	private static int num1 = 10;
+	
+	private static int num2 = 20;
+	
+	static {
+		/*
+		 * num1 = 100; num2 = 200;
+		 */
+		System.out.println("static block");
+		System.out.println(num2);
+	}
+	
+	public static void main(String[] args) {
+		//str1∫Õstr3œ‡µ»
+		String str1 = "123";
+		String str2 = new String("123");
+		String str3 = "1" + "2" + "3";
+		String s = "12";
+		String str4 = s + "3";
+		String Str5 = getNum() + "3";
+		System.out.println(str2 == str4);
+		System.out.println(str2 == Str5);
+		System.out.println(str4 == Str5);
+		
+		
+			
+//			System.out.println(num1);
+		
+	}
+
+	private static String getNum() {
+		
+		return "12";
+	}
+}

@@ -1,0 +1,5 @@
+package com.sxt.mapper;
+
+public class UserServiceImpl {
+
+}

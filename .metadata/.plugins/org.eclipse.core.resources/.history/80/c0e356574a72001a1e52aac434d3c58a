@@ -1,0 +1,12 @@
+package com.sxt.system.vo;
+
+import com.sxt.system.domain.Permission;
+
+public class PermissionVo extends Permission{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}

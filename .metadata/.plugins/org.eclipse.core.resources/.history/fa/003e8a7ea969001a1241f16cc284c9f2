@@ -1,0 +1,30 @@
+package com.sxt;
+
+
+
+import java.util.List;
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+
+
+
+@SpringBootTest
+class ApplicationTests {
+	
+	
+	
+	@Test
+	void contextLoads() {
+		
+	}
+	
+
+}
